@@ -44,7 +44,7 @@
 
         resetCountDown();
         to = window.setInterval(function () {
-            var secondsRemaining = seconds - (Date.now() / 1000) - startTime,
+            var secondsRemaining = seconds - ((Date.now() / 1000) - startTime),
                 minutesRemaining;
 
 
