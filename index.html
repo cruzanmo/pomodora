@@ -50,7 +50,7 @@
 
             if (secondsRemaining > 0) {
                 minutesRemaining = Math.floor(secondsRemaining/60);
-                updateCountDownDisplay(minutesRemaining + ':' + (secondsRemaining - minutesRemaining*60));
+                updateCountDownDisplay(minutesRemaining + ':' + Math.ceil((secondsRemaining - minutesRemaining*60)));
             } else {
                 beep.play();
                 cb();
