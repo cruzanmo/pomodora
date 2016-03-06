@@ -39,13 +39,18 @@
         updateCountDownDisplay('');
     }
 
-    function startCountDown(secondsRemaining, cb) {
+    function startCountDown(seconds, cb) {
+        var startTime = Date.now() / 1000; // seconds
+
         resetCountDown();
         to = window.setInterval(function () {
-            var minutes;
-            if (secondsRemaining > 1) {
-                minutes = Math.floor((--secondsRemaining)/60);
-                updateCountDownDisplay(minutes + ':' + (secondsRemaining - minutes*60));
+            var secondsRemaining = seconds - (Date.now() / 1000) - startTime,
+                minutesRemaining;
+
+
+            if (secondsRemaining > 0) {
+                minutesRemaining = Math.floor(secondsRemaining/60);
+                updateCountDownDisplay(minutesRemaining + ':' + (secondsRemaining - minutesRemaining*60));
             } else {
                 beep.play();
                 cb();
