@@ -32,6 +32,7 @@
 
     function updateCountDownDisplay(str) {
         countDown.textContent = str;
+        document.title = str;
     }
 
     function resetCountDown() {
@@ -45,12 +46,11 @@
         resetCountDown();
         to = window.setInterval(function () {
             var secondsRemaining = seconds - ((Date.now() / 1000) - startTime),
-                minutesRemaining;
-
+                minutesDisplay = Math.floor(secondsRemaining/60),
+                secondsDisplay = Math.ceil((secondsRemaining - minutesDisplay*60));
 
             if (secondsRemaining > 0) {
-                minutesRemaining = Math.floor(secondsRemaining/60);
-                updateCountDownDisplay(minutesRemaining + ':' + Math.ceil((secondsRemaining - minutesRemaining*60)));
+                updateCountDownDisplay(minutesDisplay + ':' + (secondsDisplay < 10 ? '0' : '') + secondsDisplay);
             } else {
                 beep.play();
                 cb();
