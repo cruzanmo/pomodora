@@ -43,8 +43,8 @@
         return Date.now() / 1000;
     }
     
-    function getSecondsRemaining(startTime) {
-        return seconds - (getNowInSeconds() - startTime);
+    function getSecondsRemaining(totalSeconds, startSeconds) {
+        return totalSeconds - (getNowInSeconds() - startSeconds);
     }
     
     function addLeadingZero(number) {
@@ -58,15 +58,15 @@
         return minutesDisplay + ':' + secondsDisplay;
     }
 
-    function startCountDown(seconds, cb) {
-        var startTime = getNowInSeconds();
+    function startCountDown(totalSeconds, cb) {
+        var startSeconds = getNowInSeconds();
 
         resetCountDown();
         interval = window.setInterval(function () {
-            var secondsRemaining = seconds - (getNowInSeconds() - startTime);
+            var secondsRemaining = getSecondsRemaining(totalSeconds, startTime);
 
             if (secondsRemaining > 0) {
-                updateCountDownDisplay(convertSecondsToTimeDisplay(getSecondsRemaining(startTime)));
+                updateCountDownDisplay(convertSecondsToTimeDisplay(secondsRemaining));
             } else {
                 beep.play();
                 cb();
