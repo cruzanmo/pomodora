@@ -63,7 +63,7 @@
 
         resetCountDown();
         interval = window.setInterval(function () {
-            var secondsRemaining = getSecondsRemaining(totalSeconds, startTime);
+            var secondsRemaining = getSecondsRemaining(totalSeconds, startSeconds);
 
             if (secondsRemaining > 0) {
                 updateCountDownDisplay(convertSecondsToTimeDisplay(secondsRemaining));
